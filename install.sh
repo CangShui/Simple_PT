@@ -1,3 +1,4 @@
+#!/bin/sh
 echo "设置登陆账号"
 read -p "请输入:" username
 echo "设置登陆密码"
@@ -107,6 +108,7 @@ psd=$( echo $RANDOM |md5sum |cut -c 1-32 )
 filebrowser -d /etc/filebrowser/database.db users update admin --password $psd
 filebrowser -d /etc/filebrowser/database.db config set --locale zh-cn
 filebrowser -d /etc/filebrowser/database.db users add $username $password --perm.admin
+filebrowser -d /etc/filebrowser/database.db users update $username --scope "/"
 
 
 systemctl enable filebrowser
@@ -136,4 +138,5 @@ $username
 登陆密码：	
 $password
 
+项目地址：https://github.com/CangShui/Simple_PT
 "
