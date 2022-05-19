@@ -6,6 +6,8 @@
 
 自用脚本，因此只在X86平台的Debian11系统中测试通过，不考虑其他兼容性</h4><br>
 
+<h5>如何使用？直接输入回车</h5>
+<code>bash <(curl -s -L https://raw.githubusercontent.com/CangShui/Simple_PT/main/install.sh)</code>
 
 <h2>鸣谢</h2>
 qBittorrent Install - https://github.com/userdocs/qbittorrent-nox-static<br>
