@@ -122,6 +122,29 @@ filebrowser -d /etc/filebrowser/database.db users add $username $password --perm
 filebrowser -d /etc/filebrowser/database.db users update $username --scope "/"
 systemctl start filebrowser
 
+#安装简单服务器信息面板
+apt -y install default-jre maven
+wget --no-check-certificate --no-cache -O "$HOME/ward.jar" https://github.com/CangShui/Simple_PT/releases/download/v1.8.8/ward.jar
+mv $HOME/ward.jar /usr/bin/ward.jar
+cat >  /usr/lib/systemd/system/ward.service <<EOF
+[Unit]
+Description=Ward server
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/java -Xms128m -Xmx256m -jar /usr/bin/ward.jar
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl start ward.service
+systemctl enable ward.service
+systemctl status ward.service
+
+
+
 ip=$(curl -s -g http://1.0.0.10/cdn-cgi/trace | sed -n '3p' ) || die
 ip=${ip##*=}  
 
@@ -145,6 +168,11 @@ $ip:8888
 $username
 登陆密码：	
 $password
+
+
+ward v1.8.8
+网页地址：
+$ip:4000
 
 项目地址：https://github.com/CangShui/Simple_PT
 "
