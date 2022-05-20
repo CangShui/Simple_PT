@@ -143,6 +143,12 @@ systemctl start ward.service
 systemctl enable ward.service
 systemctl status ward.service
 
+cat >  /setup.ini <<EOF
+[setup]
+serverName = 简单监控
+theme = light
+port = 9999
+EOF
 
 
 ip=$(curl -s -g http://1.0.0.10/cdn-cgi/trace | sed -n '3p' ) || die
@@ -172,7 +178,7 @@ $password
 
 ward v1.8.8
 网页地址：
-$ip:4000
+$ip:9999
 
 项目地址：https://github.com/CangShui/Simple_PT
 "
