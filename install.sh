@@ -102,6 +102,8 @@ cat >/etc/filebrowser/filebrowser.json <<-EOF
 }
 EOF
 
+filebrowser config init
+systemctl stop filebrowser
 systemctl stop filebrowser
 #admin密码无法删除，因此填写一个高强度密码
 psd=$( echo $RANDOM |md5sum |cut -c 1-32 )
