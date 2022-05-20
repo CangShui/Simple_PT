@@ -51,14 +51,20 @@ cat << EOF >/home/$username/.config/qBittorrent/qBittorrent.conf
 [LegalNotice]
 Accepted=true
 
+[BitTorrent]
+Session\BTProtocol=Both
+Session\GlobalUPSpeedLimit=145000
+
 [Network]+
 Cookies=@Invalid()
 
 [Preferences]
+General\Locale=zh
 Connection\PortRangeMin=45000
 Downloads\DiskWriteCacheSize=$Cache2
 Downloads\SavePath=/home/$username/qbittorrent/Downloads/
 Queueing\QueueingEnabled=false
+WebUI\CSRFProtection=false
 WebUI\Password_PBKDF2="@ByteArray($PBKDF2password)"
 WebUI\Port=8080
 WebUI\Username=$username
