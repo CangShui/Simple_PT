@@ -107,6 +107,10 @@ cat >/etc/filebrowser/filebrowser.json <<-EOF
 }
 EOF
 
+
+systemctl enable filebrowser
+systemctl start filebrowser
+
 filebrowser config init
 systemctl stop filebrowser
 systemctl stop filebrowser
@@ -116,9 +120,6 @@ filebrowser -d /etc/filebrowser/database.db users update admin --password $psd
 filebrowser -d /etc/filebrowser/database.db config set --locale zh-cn
 filebrowser -d /etc/filebrowser/database.db users add $username $password --perm.admin
 filebrowser -d /etc/filebrowser/database.db users update $username --scope "/"
-
-
-systemctl enable filebrowser
 systemctl start filebrowser
 
 ip=$(curl -s -g http://1.0.0.10/cdn-cgi/trace | sed -n '3p' ) || die
