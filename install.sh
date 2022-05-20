@@ -53,7 +53,6 @@ Accepted=true
 
 [BitTorrent]
 Session\BTProtocol=Both
-Session\GlobalUPSpeedLimit=145000
 
 [Network]+
 Cookies=@Invalid()
