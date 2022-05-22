@@ -13,6 +13,20 @@ done
 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
 useradd -m -p "$pass" "$username"
 
+cat <<EOF > /etc/apt/sources.list 
+deb https://mirrors.xtom.com/debian/ bullseye main non-free contrib
+deb https://mirrors.xtom.com/debian-security bullseye/updates main
+deb https://mirrors.xtom.com/debian/ bullseye-updates main non-free contrib
+deb https://mirrors.xtom.com/debian/ bullseye-backports main non-free contrib
+
+deb-src https://mirrors.xtom.com/debian-security bullseye/updates main
+deb-src https://mirrors.xtom.com/debian/ bullseye main non-free contrib
+deb-src https://mirrors.xtom.com/debian/ bullseye-updates main non-free contrib
+deb-src https://mirrors.xtom.com/debian/ bullseye-backports main non-free contrib
+EOF
+
+apt-get update
+
 
 #开始安装qbittorrent
 wget --no-check-certificate --no-cache -O "$HOME/qbittorrent-nox" https://github.com/CangShui/Simple_PT/releases/download/V4.3.8/qbittorrent-nox && chmod +x $HOME/qbittorrent-nox
