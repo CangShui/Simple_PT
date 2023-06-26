@@ -16,10 +16,11 @@ done
 echo "设置登陆密码"
 read -p "请输入:" password
 
-for i in {1..5}
+for i in {1..3}
 do
   killall qbittorrent-nox
   killall filebrowser
+  sleep 1s
 done
 
 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
@@ -73,6 +74,7 @@ systemctl start qbittorrent-nox@$username
 systemctl stop qbittorrent-nox@$username
 wget --no-check-certificate --no-cache -O "$HOME/qb_password_gen" https://github.com/CangShui/Simple_PT/releases/download/V4.3.8/qb_password_gen && chmod +x $HOME/qb_password_gen
 PBKDF2password=$($HOME/qb_password_gen $password)
+rm -rf /home/*/.config/qBittorrent/qBittorrent.conf
 cat << EOF >/home/$username/.config/qBittorrent/qBittorrent.conf
 [LegalNotice]
 Accepted=true
@@ -86,6 +88,7 @@ Cookies=@Invalid()
 [Preferences]
 General\Locale=zh
 Connection\PortRangeMin=45000
+WebUI\HostHeaderValidation=false
 Downloads\DiskWriteCacheSize=$Cache2
 Downloads\SavePath=/home/$username/qbittorrent/Downloads/
 Queueing\QueueingEnabled=false
@@ -93,7 +96,6 @@ WebUI\CSRFProtection=false
 WebUI\Password_PBKDF2="@ByteArray($PBKDF2password)"
 WebUI\Port=8080
 WebUI\Username=$username
-WebUI\HostHeaderValidation=false
 EOF
 rm qb_password_gen
 systemctl start qbittorrent-nox@$username
