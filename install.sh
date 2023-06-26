@@ -16,7 +16,7 @@ done
 echo "设置登陆密码"
 read -p "请输入:" password
 
-for i in {1..3}
+for i in {1..5}
 do
   killall qbittorrent-nox
   killall filebrowser
