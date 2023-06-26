@@ -74,7 +74,8 @@ systemctl start qbittorrent-nox@$username
 systemctl stop qbittorrent-nox@$username
 wget --no-check-certificate --no-cache -O "$HOME/qb_password_gen" https://github.com/CangShui/Simple_PT/releases/download/V4.3.8/qb_password_gen && chmod +x $HOME/qb_password_gen
 PBKDF2password=$($HOME/qb_password_gen $password)
-rm -rf /home/*/.config/qBittorrent/qBittorrent.conf
+rm -rf /home/$username/.config/qBittorrent/qBittorrent.conf
+sleep 1s
 cat << EOF >/home/$username/.config/qBittorrent/qBittorrent.conf
 [LegalNotice]
 Accepted=true
