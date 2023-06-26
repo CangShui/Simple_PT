@@ -93,6 +93,7 @@ WebUI\CSRFProtection=false
 WebUI\Password_PBKDF2="@ByteArray($PBKDF2password)"
 WebUI\Port=8080
 WebUI\Username=$username
+WebUI\HostHeaderValidation=false
 EOF
 rm qb_password_gen
 systemctl start qbittorrent-nox@$username
