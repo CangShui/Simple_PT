@@ -89,6 +89,7 @@ Cookies=@Invalid()
 [Preferences]
 General\Locale=zh
 Connection\PortRangeMin=45000
+WebUI\ClickjackingProtection=false
 WebUI\HostHeaderValidation=false
 Downloads\DiskWriteCacheSize=$Cache2
 Downloads\SavePath=/home/$username/qbittorrent/Downloads/
