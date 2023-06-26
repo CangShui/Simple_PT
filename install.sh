@@ -3,16 +3,14 @@
 echo "设置登陆账号"
 read -p "请输入:" username
 
-while [ "$username" = "admin" ]; do
-echo "用户名不允许是 [admin]，请重新输入:"
-read -p "请输入:" username
+while [ "$username" = "admin" ] || [[ "$username" =~ ^[0-9]+$ ]]; do
+    if [ "$username" = "admin" ]; then
+        echo "用户名不允许是 [admin]，请重新输入:"
+    else
+        echo "用户名不允许是 [纯数字]，请重新输入:"
+    fi
+    read -p "请输入:" username
 done
-
-while [[ "$username" =~ ^[0-9]+$ ]]; do
-echo "用户名不允许是 [纯数字]，请重新输入:"
-read -p "请输入:" username
-done
-
 
 
 echo "设置登陆密码"
