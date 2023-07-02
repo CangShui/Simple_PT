@@ -16,13 +16,6 @@ done
 echo "设置登陆密码"
 read -p "请输入:" password
 
-for i in {1..5}
-do
-  killall qbittorrent-nox
-  killall filebrowser
-  sleep 1s
-done
-
 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
 useradd -m -p "$pass" "$username"
 
@@ -39,7 +32,14 @@ deb-src https://mirrors.xtom.com/debian/ bullseye-backports main non-free contri
 EOF
 
 apt-get update
+apt-get install -y psmisc
 
+for i in {1..4}
+do
+  killall qbittorrent-nox
+  killall filebrowser
+  sleep 1s
+done
 
 #开始安装qbittorrent
 wget --no-check-certificate --no-cache -O "$HOME/qbittorrent-nox" https://github.com/CangShui/Simple_PT/releases/download/V4.3.8/qbittorrent-nox && chmod +x $HOME/qbittorrent-nox
